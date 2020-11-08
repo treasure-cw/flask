@@ -25,47 +25,47 @@ OS：ubuntu0.16.04.1<br>
 <h4>2.1 文件介绍</h4>
 ├── app //项目主目录<br>
 │&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── auth //登录模块<br>
-│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── \_\_init__.py //初始化文件<br>
+│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── \__init__.py //初始化文件<br>
 │&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── forms.py //表单文件<br>
 │&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;└── views.py //路由文件<br>
-│·····├── sysadmin //系统管理员模块<br>
-│·····│·····├── \_\_init__.py //初始化文件<br>
-│·····│·····├── forms.py //表单文件<br>
-│·····│·····└── views.py //路由文件<br>
-│·····├── eduadmin //教务管理员模块<br>
-│·····│·····├── \_\_init__.py //初始化文件<br>
-│·····│·····├── forms.py //表单文件<br>
-│·····│·····└── views.py //路由文件<br>
-│·····├── student //学生模块<br>
-│·····│·····├── \_\_init__.py //初始化文件<br>
-│·····│·····├── forms.py //表单文件<br>
-│·····│·····└── views.py //路由文件<br>
-│·····├── teacher //教师模块<br>
-│·····│·····├── \_\_init__.py //初始化文件<br>
-│·····│·····├── forms.py //表单文件<br>
-│·····│·····└── views.py //路由文件<br>
-│·····├── static //静态文件<br>
-│·····│·····├── css //样式文件<br>
-│·····│·····│·····└── nav.css //登录模块<br>
-│·····│·····├── JS //JS文件<br>
-│·····│·····│·····├── sysadmin.js //系统管理员JS<br>
-│·····│·····│·····├── eduadmin.js //教务管理员JS<br>
-│·····│·····│·····├── student.js //学生JS<br>
-│·····│·····│·····└── teacher.js //教师JS<br>
-│·····│·····└── uploads //Excel文件<br>
-│·····├── templates //模板<br>
-│·····│·····├── includes //引用文件<br>
-│·····│·····│·····└── _navbar.html //功能栏模板<br>
-│·····│·····├── base.html //基模板<br>
-│·····│·····├── changepwd.html //修改密码模板<br>
-│·····│·····├── eduadmin.html //教务员模板<br>
-│·····│·····├── index.html //初始界面模板（无用，删除会报错？）<br>
-│·····│·····├── login.html //登录模板<br>
-│·····│·····├── student.html //学生模板<br>
-│·····│·····├── sysadmin.html //系统管理员模板<br>
-│·····│·····└── teacher.html //教师模板<br>
-│·····├── \_\_init\__.py //初始化文件<br>
-│·····└── models.py //SQLAlchemy模型<br>
+│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── sysadmin //系统管理员模块<br>
+│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── \__init__.py //初始化文件<br>
+│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── forms.py //表单文件<br>
+│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;└── views.py //路由文件<br>
+│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── eduadmin //教务管理员模块<br>
+│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── \__init__.py //初始化文件<br>
+│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── forms.py //表单文件<br>
+│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;└── views.py //路由文件<br>
+│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── student //学生模块<br>
+│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── \__init__.py //初始化文件<br>
+│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── forms.py //表单文件<br>
+│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;└── views.py //路由文件<br>
+│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── teacher //教师模块<br>
+│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── \__init__.py //初始化文件<br>
+│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── forms.py //表单文件<br>
+│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;└── views.py //路由文件<br>
+│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── static //静态文件<br>
+│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── css //样式文件<br>
+│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;└── nav.css //登录模块<br>
+│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── JS //JS文件<br>
+│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── sysadmin.js //系统管理员JS<br>
+│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── eduadmin.js //教务管理员JS<br>
+│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── student.js //学生JS<br>
+│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;└── teacher.js //教师JS<br>
+│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;└── uploads //Excel文件<br>
+│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── templates //模板<br>
+│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── includes //引用文件<br>
+│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;└── _navbar.html //功能栏模板<br>
+│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── base.html //基模板<br>
+│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── changepwd.html //修改密码模板<br>
+│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── eduadmin.html //教务员模板<br>
+│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── index.html //初始界面模板（无用，删除会报错？）<br>
+│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── login.html //登录模板<br>
+│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── student.html //学生模板<br>
+│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── sysadmin.html //系统管理员模板<br>
+│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;└── teacher.html //教师模板<br>
+│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── \_\_init\__.py //初始化文件<br>
+│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;└── models.py //SQLAlchemy模型<br>
 ├── manager.py //程序入口<br>
 └── README.md //MarkDown文件
 <h4>2.2 模型介绍</h4>
