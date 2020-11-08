@@ -25,7 +25,7 @@ OS：ubuntu0.16.04.1<br>
 <h4>2.1 文件介绍</h4>
 ├── app //项目主目录<br>
 │&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── auth //登录模块<br>
-│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── \__init\__.py //初始化文件<br>
+│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── __init__.py //初始化文件<br>
 │&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── forms.py //表单文件<br>
 │&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;└── views.py //路由文件<br>
 │&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── sysadmin //系统管理员模块<br>
