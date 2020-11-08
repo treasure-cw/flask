@@ -23,9 +23,9 @@ def create_app():
     # ip:服务器（数据库）地址
     # pwd:数据库密码
     # usr:数据库用户名
-    ip = "47.98.235.106"
-    pwd = "123456"
-    usr = "root"
+    ip = #你的数据库ip
+    pwd = #你的数据库密码
+    usr = #你的数据库用户名
     # 连接数据库
     app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://{usr}:{pwd}@{ip}:3306/TechSystem'
     app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
