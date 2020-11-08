@@ -4,7 +4,8 @@ from .forms import *
 from ..models import *
 from .. import db
 from flask_login import login_user, logout_user, login_required, current_user
-
+from os import path
+from werkzeug.utils import secure_filename
 '''
 添加分数业务：
 myid:当前登录用户id；
