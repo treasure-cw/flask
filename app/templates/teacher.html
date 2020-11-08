@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block styles %}
+        {{ super() }}
+        <script type="text/javascript" src="../static/JS/teacher.js"></script>
+{% endblock %}
+{% block content%}
+    <div class="container-fluid" style="height: 91.9%;background-color: #1b6d85">
+        <div class="col-md-2" style="height: 100%;background-color: white">
+            <ul class="nav nav-list" >
+                <li class="nav-header" style="font-size: 20px;margin-bottom: 20px;margin-top: 15px">功能列表</li>
+                <li class="active,pad" style="font-size: 15px" onclick="table1();"><a href="#">开课信息查看</a></li>
+                <li class="pad" onclick="table2();"> <a href="#" style="font-size: 15px">成绩录入</a></li>
+            </ul>
+        </div>
+        <div class="col-md-10" style="height: 100%;background-color: gray">
+            <div class="tabbable" id="tb1"> <!-- Only required for left/right tabs -->
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab1_1" data-toggle="tab">开课信息</a></li>
+                    <li><a href="#tab1_2" data-toggle="tab">学生名单</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab1_1">
+                        <table class="table">
+                            <tr>
+                                <th>排课编号</th>
+                                <th>课程名称</th>
+                                <th>上课时间</th>
+                                <th>开课班级</th>
+                                <th>选课人数</th>
+                            </tr>
+                            {% for coup in range(sum|length) %}
+                                <tr>
+                                    <th>{{ courseplan[coup]['id'] }}</th>
+                                    <th>{{ Cou.query.filter_by(id=courseids[coup]).first().name }}</th>
+                                    <th>{{ courseseq[coup] }}</th>
+                                    <th>{{ openclass[coup] }}</th>
+                                    <th>{{ sum[coup] }}</th>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                    <div class="tab-pane" id="tab1_2">
+                        <table class="table">
+                            <tr>
+                                <th>排课编号</th>
+                                <th>课程名称</th>
+                                <th>学生账号</th>
+                                <th>学生姓名</th>
+                                <th>学生班级</th>
+                            </tr>
+                            {% for c in range(mychoice|length) %}
+                                <tr>
+                                    <th>{{ mychoice[c]['courseplanid'] }}</th>
+                                    <th>{{ Cou.query.filter_by(id=courseids1[c]).first().name }}</th>
+                                    <th>{{ mychoice[c]['studentid'] }}</th>
+                                    <th>{{ Stu.query.filter_by(id=mychoice[c]['studentid']).first().name }}</th>
+                                    <th>{{ Cla.query.filter_by(id=Stu.query.filter_by(id=mychoice[c]['studentid']).first().classid).first().name }}</th>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+              </div>
+            </div>
+            <div class="tabbable" style="display: none" id="tb2"> <!-- Only required for left/right tabs -->
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab2_1" data-toggle="tab">手动录入</a></li>
+                    <li><a href="#tab2_2" data-toggle="tab">成绩修改</a></li>
+                    <li><a href="#tab2_3" data-toggle="tab">Excel录入</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab2_1">
+                        <table class="table">
+                            <tr>
+                                <th>课程号</th>
+                                <th>课程名</th>
+                                <th>学生账号</th>
+                                <th>学生姓名</th>
+                                <th>成绩</th>
+                            </tr>
+                            <form method="post" action="{{ url_for('teacher.addscore',myid=myself.id) }}">
+                                {% for c in range(mychoice1|length) %}
+                                    <tr>
+                                        <th><label>
+                                            <input style="width: 80%" type="text" name="cid" readonly value="{{ mychoice1[c]['courseplanid'] }}">
+                                        </label></th>
+                                        <th><label>
+                                            <input style="width: 80%" type="text" name="cname" readonly value="{{ Cou.query.filter_by(id=courseids11[c]).first().name }}">
+                                        </label></th>
+                                        <th><label>
+                                            <input style="width: 80%" type="text" name="sid" readonly value="{{ mychoice1[c]['studentid'] }}">
+                                        </label></th>
+                                        <th><label>
+                                            <input style="width: 80%" type="text" name="sname" readonly value="{{ Stu.query.filter_by(id=mychoice1[c]['studentid']).first().name }}">
+                                        </label></th>
+                                        <th><label>
+                                            <input style="width: 80%" type="text" value="{{ mychoice1[c]['score'] }}" name="score">
+                                        </label></th>
+                                    </tr>
+                                {% endfor %}
+                                <tr>
+                                    <th><input type="submit" value="提交"></th>
+                                </tr>
+                            </form>
+                        </table>
+                    </div>
+                    <div class="tab-pane" id="tab2_2">
+                        <table class="table">
+                            <tr>
+                                <th>课程号</th>
+                                <th>课程名</th>
+                                <th>学生账号</th>
+                                <th>学生姓名</th>
+                                <th>成绩</th>
+                            </tr>
+                            <form method="post" action="{{ url_for('teacher.addscore',myid=myself.id) }}">
+                                {% for c in range(mychoice2|length) %}
+                                    <tr>
+                                        <th><label>
+                                            <input style="width: 80%" type="text" name="cid" readonly value="{{ mychoice2[c]['courseplanid'] }}">
+                                        </label></th>
+                                        <th><label>
+                                            <input style="width: 80%" type="text" name="cname" readonly value="{{ Cou.query.filter_by(id=courseids111[c]).first().name }}">
+                                        </label></th>
+                                        <th><label>
+                                            <input style="width: 80%" type="text" name="sid" readonly value="{{ mychoice2[c]['studentid'] }}">
+                                        </label></th>
+                                        <th><label>
+                                            <input style="width: 80%" type="text" name="sname" readonly value="{{ Stu.query.filter_by(id=mychoice2[c]['studentid']).first().name }}">
+                                        </label></th>
+                                        <th><label>
+                                            <input style="width: 80%" type="text" value="{{ mychoice2[c]['score'] }}" name="score">
+                                        </label></th>
+                                    </tr>
+                                {% endfor %}
+                                <tr>
+                                    <th><input type="submit" value="修改"></th>
+                                </tr>
+                            </form>
+                        </table>
+                    </div>
+                    <div class="tab-pane" id="tab2_3">
+                        <h1>请选择要上传的文件</h1>
+                        <form method="post" action="{{ url_for('teacher.upload',myid=myself.id) }}" enctype=multipart/form-data>
+                            <input type="file" name=file>
+                            <input type="submit" value=Upload>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,249 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block styles %}
+        {{ super() }}
+        <script type="text/javascript" src="../static/JS/student.js"></script>
+{% endblock %}
+{% block content%}
+    <div class="container-fluid" style="height: 91.9%;background-color: #1b6d85">
+        <div class="col-md-2" style="height: 100%;background-color: white">
+            <ul class="nav nav-list" >
+                <li class="nav-header" style="font-size: 20px;margin-bottom: 20px;margin-top: 15px">功能列表</li>
+                <li class="active,pad" style="font-size: 15px" onclick="table1();"><a href="#">个人信息查看</a></li>
+                <li class="pad" onclick="table2();"> <a href="#" style="font-size: 15px">选课</a></li>
+                <li class="pad" onclick="table3();"><a href="#" style="font-size: 15px">退课</a></li>
+                <li class="pad" onclick="table4();"><a href="#" style="font-size: 15px">成绩查询</a></li>
+            </ul>
+        </div>
+        <div class="col-md-10" style="height: 100%;background-color: gray">
+            <div class="tabbable" id="tb1"> <!-- Only required for left/right tabs -->
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab1_1" data-toggle="tab">个人信息</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab1_1">
+                        <table class="table">
+                            <tr>
+                                <th>账号</th>
+                                <th>{{ myself.id }}</th>
+                            </tr>
+                            <tr>
+                                <th>姓名</th>
+                                <th>{{ myself.name }}</th>
+                            </tr>
+                            <tr>
+                                <th>性别</th>
+                                <th>{{ myself.sex }}</th>
+                            </tr>
+                            <tr>
+                                <th>出生日期</th>
+                                <th>{{ myself.brithday }}</th>
+                            </tr>
+                            <tr>
+                                <th>班级</th>
+                                <th>{{ Cla.query.filter_by(id=myself.classid).first().name }}</th>
+                            </tr>
+                        </table >
+                    </div>
+              </div>
+            </div>
+            <div class="tabbable" style="display: none" id="tb2"> <!-- Only required for left/right tabs -->
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab2_1" data-toggle="tab">必修课</a></li>
+                    <li><a href="#tab2_2" data-toggle="tab">专业限选课</a></li>
+                    <li><a href="#tab2_3" data-toggle="tab">通选限选课</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab2_1">
+                        <table class="table">
+                            <tr>
+                                <th>课程名</th>
+                                <th>上课时间</th>
+                                <th>任课教师</th>
+                                <th>剩余人数</th>
+                                <th>开课学期</th>
+                                <th>选课</th>
+                            </tr>
+                            <form action="{{ url_for('student.addcourse',id=myself.id) }}" method="post">
+                                {% for c,cc in course0|zip(course0seq) %}
+                                    {% if c['id'] not in mychoice %}
+                                        <tr>
+                                            <th>{{ Cou.query.filter_by(id=c['courseid']).first().name }}</th>
+                                            <th>{{ cc }}</th>
+                                            <th>{{ Tea.query.filter_by(id=c['teacherid']).first().name }}</th>
+                                            <th>{{ c['num'] }}</th>
+                                            <th>{{ c['semester'] }}</th>
+                                            <th><label>
+                                                <input type="checkbox" value="{{ c['id'] }}" name="chk">
+                                            </label></th>
+                                        </tr>
+                                    {% endif %}
+                                {% endfor %}
+                                <tr>
+                                    {% for message in get_flashed_messages(with_categories=True) %}
+                                        <div class="alert alert-{{ message[0] }}">
+                                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                            {{ message[1] }}
+                                        </div>
+                                    {% endfor %}
+                                    <th><input type="submit"></th>
+                                </tr>
+                            </form>
+                        </table>
+                    </div>
+                    <div class="tab-pane" id="tab2_2">
+                        <table class="table">
+                            <tr>
+                                <th>课程名</th>
+                                <th>上课时间</th>
+                                <th>任课教师</th>
+                                <th>剩余人数</th>
+                                <th>开课学期</th>
+                                <th>选课</th>
+                            </tr>
+                            <form action="{{ url_for('student.addcourse',id=myself.id) }}" method="post">
+                                {% for c,cc in course1|zip(course1seq) %}
+                                    {% if c['id'] not in mychoice %}
+                                        <tr>
+                                            <th>{{ Cou.query.filter_by(id=c['courseid']).first().name }}</th>
+                                            <th>{{ cc }}</th>
+                                            <th>{{ Tea.query.filter_by(id=c['teacherid']).first().name }}</th>
+                                            <th>{{ c['num'] }}</th>
+                                            <th>{{ c['semester'] }}</th>
+                                            <th><label>
+                                                <input type="checkbox" value="{{ c['id'] }}" name="chk">
+                                            </label></th>
+                                        </tr>
+                                    {% endif %}
+                                {% endfor %}
+                                <tr>
+                                    <th><input type="submit"></th>
+                                </tr>
+                            </form>
+                        </table>
+                    </div>
+                    <div class="tab-pane" id="tab2_3">
+                        <table class="table">
+                            <tr>
+                                <th>课程名</th>
+                                <th>上课时间</th>
+                                <th>任课教师</th>
+                                <th>剩余人数</th>
+                                <th>开课学期</th>
+                                <th>选课</th>
+                            </tr>
+                            <form action="{{ url_for('student.addcourse',id=myself.id) }}" method="post">
+                                {% for c,cc in course2|zip(course2seq) %}
+                                    {% if c['id'] not in mychoice %}
+                                        <tr>
+                                            <th>{{ Cou.query.filter_by(id=c['courseid']).first().name }}</th>
+                                            <th>{{ cc }}</th>
+                                            <th>{{ Tea.query.filter_by(id=c['teacherid']).first().name }}</th>
+                                            <th>{{ c['num'] }}</th>
+                                            <th>{{ c['semester'] }}</th>
+                                            <th><label>
+                                                <input type="checkbox" value="{{ c['id'] }}" name="chk">
+                                            </label></th>
+                                        </tr>
+                                    {% endif %}
+                                {% endfor %}
+                                <tr>
+                                    <th><input type="submit"></th>
+                                </tr>
+                            </form>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="tabbable" style="display: none" id="tb3"> <!-- Only required for left/right tabs -->
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab3_1" data-toggle="tab">当前课表</a></li>
+                    <li><a href="#tab3_2" data-toggle="tab">退课</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab3_1">
+                        <table class="table" border="2">
+                            <tr>
+                                <th>kb</th>
+                                <th>周一</th>
+                                <th>周二</th>
+                                <th>周三</th>
+                                <th>周四</th>
+                                <th>周五</th>
+                                <th>周六</th>
+                                <th>周日</th>
+                            </tr>
+                             {% for tb in range(table_class|length) %}
+                                    <tr>
+                                        <th>{{ classname[tb] }}</th>
+                                        <th>{{ table_class[tb][0] }}</th>
+                                        <th>{{ table_class[tb][1] }}</th>
+                                        <th>{{ table_class[tb][2] }}</th>
+                                        <th>{{ table_class[tb][3] }}</th>
+                                        <th>{{ table_class[tb][4] }}</th>
+                                        <th>{{ table_class[tb][5] }}</th>
+                                        <th>{{ table_class[tb][6] }}</th>
+                                    </tr>
+                             {% endfor %}
+                        </table>
+                    </div>
+                    <div class="tab-pane" id="tab3_2">
+                        <table class="table">
+                            <tr>
+                                <th>排课编号</th>
+                                <th>课程名</th>
+                                <th>课程类别</th>
+                                <th>上课时间</th>
+                                <th>操作</th>
+                            </tr>
+                            <form action="{{ url_for('student.deletecourse',id=myself.id) }}" method="post">
+                                {% for ch in range(choice|length) %}
+                                    <tr>
+                                        <th>{{ choice[ch]['courseplanid'] }}</th>
+                                        <th>{{ Cou.query.filter_by(id=courseids[ch]).first().name }}</th>
+                                        <th>{{ coursetypes[ch] }}</th>
+                                        <th>{{ seqtime[ch] }}</th>
+                                        <th><label>
+                                            {% if choice[ch]['score']|float == 0.0 %}
+                                                <input type="checkbox" name="chk" value="{{ choice[ch]['courseplanid'] }}">
+                                            {% else %}
+                                                <input disabled type="checkbox" name="chk" value="{{ choice[ch]['courseplanid'] }}">
+                                            {% endif %}
+                                        </label></th>
+                                    </tr>
+                                {% endfor %}
+                                <tr>
+                                    <th><input type="submit" value="退课"></th>
+                                </tr>
+                            </form>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="tabbable" style="display: none" id="tb4"> <!-- Only required for left/right tabs -->
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab4_1" data-toggle="tab">课程分数</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab4_1">
+                        <table class="table">
+                            <tr>
+                                <th>课程名称</th>
+                                <th>课程学分</th>
+                                <th>课程分数</th>
+                            </tr>
+                            {% for ch in range(choice|length) %}
+                                <tr>
+                                    <th>{{ Cou.query.filter_by(id=courseids[ch]).first().name }}</th>
+                                    <th>{{ coursescores[ch] }}</th>
+                                    <th>{{ choice[ch]['score'] }}</th>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                        <h3 style="color: #0f0f0f">平均学分绩点:{{ xf }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

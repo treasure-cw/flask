@@ -1,0 +1,425 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block styles %}
+        {{ super() }}
+        <script type="text/javascript" src="../static/JS/eduadmin.js"></script>
+{% endblock %}
+{% block content%}
+    <div class="container-fluid" style="height: 91.9%;background-color: #1b6d85">
+        <div class="col-md-2" style="height: 100%;background-color: white">
+            <ul class="nav nav-list" >
+                <li class="nav-header" style="font-size: 20px;margin-bottom: 20px;margin-top: 15px">功能列表</li>
+                <li class="active,pad" style="font-size: 15px" onclick="table1();"><a href="#">教师信息管理</a></li>
+                <li class="pad" onclick="table2();"> <a href="#" style="font-size: 15px">学生信息管理</a></li>
+                <li class="pad" onclick="table3();"><a href="#" style="font-size: 15px">课程信息管理</a></li>
+                <li class="pad" onclick="table4();"><a href="#" style="font-size: 15px">排课计划管理</a></li>
+            </ul>
+        </div>
+        <div class="col-md-10" style="height: 100%;background-color: gray">
+            <div class="tabbable" id="tb1"> <!-- Only required for left/right tabs -->
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab1_1" data-toggle="tab">查看教师</a></li>
+                    <li><a href="#tab1_2" data-toggle="tab">添加教师</a></li>
+                    <li><a href="#tab1_3" data-toggle="tab">删除教师</a></li>
+                    <li><a href="#tab1_4" data-toggle="tab">修改教师信息</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab1_1">
+                        <table class="table">
+                            <tr>
+                                <th>账号</th>
+                                <th>姓名</th>
+                                <th>所属系所</th>
+                                <th>密码</th>
+                            </tr>
+                            {% for tea in teacher %}
+                                <tr>
+                                    <th>{{ tea['id'] }}</th>
+                                    <th>{{ tea['name'] }}</th>
+                                    <th>{{ Dep.query.filter_by(id=tea['departmentid']).first().name }}</th>
+                                    <th>{{ tea['password'] }}</th>
+                                </tr>
+                            {% endfor %}
+                        </table >
+                    </div>
+                    <div class="tab-pane" id="tab1_2">
+                        {{ wtf.quick_form(form2) }}
+                    </div>
+                    <div class="tab-pane" id="tab1_3">
+                        <table class="table">
+                            <tr>
+                                <th>账号</th>
+                                <th>姓名</th>
+                                <th>所属系所</th>
+                                <th>密码</th>
+                                <th>操作</th>
+                            </tr>
+                            {% for tea in teacher %}
+                                <tr>
+                                    <th>{{ tea['id'] }}</th>
+                                    <th>{{ tea['name'] }}</th>
+                                    <th>{{ Dep.query.filter_by(id=tea['departmentid']).first().name }}</th>
+                                    <th>{{ tea['password'] }}</th>
+                                    <th><a href="{{ url_for('eduadmin.deletetea',id=tea['id'],myid=myself.id) }}">删除</a></th>
+                                </tr>
+                            {% endfor %}
+                        </table >
+                    </div>
+                    <div class="tab-pane" id="tab1_4">
+                        <table class="table">
+                            <tr>
+                                <th>账号</th>
+                                <th>姓名</th>
+                                <th>所属系所</th>
+                                <th>密码</th>
+                                <th>操作</th>
+                            </tr>
+                            {% for tea in teacher %}
+                                <tr>
+                                    <form action="{{ url_for('eduadmin.modifytea',myid=myself.id) }}"  method="post">
+                                        <th><label>
+                                            <input type="text" value="{{ tea['id'] }}" readonly name="fid">
+                                        </label></th>
+                                        <th><label>
+                                            <input type="text" value="{{ tea['name'] }}" name="fname">
+                                        </label></th>
+                                        <th><label>
+                                            <select name="fs">
+                                                 {% for d in department %}
+                                                     <option value="{{ d['id'] }}">{{ d['name'] }}</option>
+                                                 {% endfor%}
+                                            </select>
+                                        </label></th>
+                                        <th><label>
+                                            <input type="text" value="{{ tea['password'] }}" name="fpassword">
+                                        </label></th>
+                                        <th><input type="submit" value="修改"></th>
+                                    </form>
+                                </tr>
+                            {% endfor %}
+                        </table >
+                    </div>
+              </div>
+            </div>
+            <div class="tabbable" style="display: none" id="tb2"> <!-- Only required for left/right tabs -->
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab2_1" data-toggle="tab">查看学生</a></li>
+                    <li><a href="#tab2_2" data-toggle="tab">添加学生</a></li>
+                    <li><a href="#tab2_3" data-toggle="tab">删除学生</a></li>
+                    <li><a href="#tab2_4" data-toggle="tab">修改学生信息</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab2_1">
+                        <table class="table">
+                            <tr>
+                                <th>账号</th>
+                                <th>姓名</th>
+                                <th>性别</th>
+                                <th>出生日期</th>
+                                <th>班级</th>
+                                <th>密码</th>
+                            </tr>
+                            {% for stu in student %}
+                                <tr>
+                                    <th>{{ stu['id'] }}</th>
+                                    <th>{{ stu['name'] }}</th>
+                                    <th>{{ stu['sex'] }}</th>
+                                    <th>{{ stu['brithday'] }}</th>
+                                    <th>{{ Cla.query.filter_by(id=stu['classid']).first().name }}</th>
+                                    <th>{{ stu['password'] }}</th>
+                                </tr>
+                            {% endfor %}
+                        </table >
+                    </div>
+                    <div class="tab-pane" id="tab2_2">
+                        {{ wtf.quick_form(form1) }}
+                    </div>
+                    <div class="tab-pane" id="tab2_3">
+                        <table class="table">
+                            <tr>
+                                <th>账号</th>
+                                <th>姓名</th>
+                                <th>性别</th>
+                                <th>出生日期</th>
+                                <th>班级</th>
+                                <th>密码</th>
+                                <th>操作</th>
+                            </tr>
+                            {% for stu in student %}
+                                <tr>
+                                    <th>{{ stu['id'] }}</th>
+                                    <th>{{ stu['name'] }}</th>
+                                    <th>{{ stu['sex'] }}</th>
+                                    <th>{{ stu['brithday'] }}</th>
+                                    <th>{{ Cla.query.filter_by(id=stu['classid']).first().name }}</th>
+                                    <th>{{ stu['password'] }}</th>
+                                    <th><a href="{{ url_for('eduadmin.deletestu',id=stu['id'],myid=myself.id) }}">删除</a></th>
+                                </tr>
+                            {% endfor %}
+                        </table >
+                    </div>
+                    <div class="tab-pane" id="tab2_4">
+                        <table class="table">
+                            <tr>
+                                <th>账号</th>
+                                <th>姓名</th>
+                                <th>性别</th>
+                                <th>出生日期</th>
+                                <th>班级</th>
+                                <th>密码</th>
+                                <th>操作</th>
+                            </tr>
+                            {% for stu in student %}
+                                <tr>
+                                    <form action="{{ url_for('eduadmin.modifystu',myid=myself.id) }}"  method="post">
+                                        <th><label>
+                                            <input style="width: 100%" type="text" value="{{ stu['id'] }}" readonly name="fid">
+                                        </label></th>
+                                        <th><label>
+                                            <input style="width: 100%" type="text" value="{{ stu['name'] }}" name="fname">
+                                        </label></th>
+                                        <th><label>
+                                            <select name="fsex">
+                                                <option value="男">男</option>
+                                                <option value="女">女</option>
+                                            </select>
+                                        </label></th>
+                                        <th><label>
+                                            <input type="date" value="{{ stu['brithday'] }}" name="fb">
+                                        </label></th>
+                                        <th><label>
+                                            <select name="fs">
+                                                 {% for c in classs %}
+                                                     <option value="{{ c['id'] }}">{{ c['name'] }}</option>
+                                                 {% endfor%}
+                                            </select>
+                                        </label></th>
+                                        <th><label>
+                                            <input type="text" value="{{ stu['password'] }}" name="fpassword">
+                                        </label></th>
+                                        <th><input type="submit" value="修改"></th>
+                                    </form>
+                                </tr>
+                            {% endfor %}
+                        </table >
+                    </div>
+                </div>
+            </div>
+            <div class="tabbable" style="display: none" id="tb3"> <!-- Only required for left/right tabs -->
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab3_1" data-toggle="tab">查看课程</a></li>
+                    <li><a href="#tab3_2" data-toggle="tab">添加课程</a></li>
+                    <li><a href="#tab3_3" data-toggle="tab">删除课程</a></li>
+                    <li><a href="#tab3_4" data-toggle="tab">修改课程信息</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab3_1">
+                        <table class="table">
+                            <tr>
+                                <th>课程编号</th>
+                                <th>所属类别</th>
+                                <th>课程名称</th>
+                                <th>课程学时</th>
+                                <th>课程学分</th>
+                            </tr>
+                            {% for cou in course %}
+                                <tr>
+                                    <th>{{ cou['id'] }}</th>
+                                    <th>{{ Type.query.filter_by(id=cou['tag']).first().name }}</th>
+                                    <th>{{ cou['name'] }}</th>
+                                    <th>{{ cou['studyhour'] }}</th>
+                                    <th>{{ cou['studyscore'] }}</th>
+                                </tr>
+                            {% endfor %}
+                        </table >
+                    </div>
+                    <div class="tab-pane" id="tab3_2">
+                        {{ wtf.quick_form(form3) }}
+                    </div>
+                    <div class="tab-pane" id="tab3_3">
+                        <table class="table">
+                            <tr>
+                                <th>课程编号</th>
+                                <th>所属类别</th>
+                                <th>课程名称</th>
+                                <th>课程学时</th>
+                                <th>课程学分</th>
+                                <th>操作</th>
+                            </tr>
+                            {% for cou in course %}
+                                <tr>
+                                    <th>{{ cou['id'] }}</th>
+                                    <th>{{ Type.query.filter_by(id=cou['tag']).first().name }}</th>
+                                    <th>{{ cou['name'] }}</th>
+                                    <th>{{ cou['studyhour'] }}</th>
+                                    <th>{{ cou['studyscore'] }}</th>
+                                    <th><a href="{{ url_for('eduadmin.deletecou',id=cou['id'],myid=myself.id) }}">删除</a></th>
+                                </tr>
+                            {% endfor %}
+                        </table >
+                    </div>
+                    <div class="tab-pane" id="tab3_4">
+                        <table class="table">
+                            <tr>
+                                <th>课程编号</th>
+                                <th>所属类别</th>
+                                <th>课程名称</th>
+                                <th>课程学时</th>
+                                <th>课程学分</th>
+                                <th>操作</th>
+                            </tr>
+                            {% for cou in course %}
+                                <tr>
+                                    <form action="{{ url_for('eduadmin.modifycou',myid=myself.id) }}"  method="post">
+                                        <th><label>
+                                            <input type="text" value="{{ cou['id'] }}" readonly name="fid">
+                                        </label></th>
+                                        <th><label>
+                                            <select name="fs">
+                                                 {% for t in coursetype %}
+                                                     <option value="{{ t['id'] }}">{{ t['name'] }}</option>
+                                                 {% endfor%}
+                                            </select>
+                                        </label></th>
+                                        <th><label>
+                                            <input type="text" value="{{ cou['name'] }}" name="fname">
+                                        </label></th>
+                                        <th><label>
+                                            <input type="text" value="{{ cou['studyhour'] }}" name="fsh">
+                                        </label></th>
+                                        <th><label>
+                                            <input type="text" value="{{ cou['studyscore'] }}" name="fss">
+                                        </label></th>
+                                        <th><input type="submit" value="修改"></th>
+                                    </form>
+                                </tr>
+                            {% endfor %}
+                        </table >
+                    </div>
+                </div>
+            </div>
+            <div class="tabbable" style="display: none" id="tb4"> <!-- Only required for left/right tabs -->
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab4_1" data-toggle="tab">查看排课计划</a></li>
+                    <li><a href="#tab4_2" data-toggle="tab">添加排课计划</a></li>
+                    <li><a href="#tab4_3" data-toggle="tab">删除排课计划</a></li>
+                    <li><a href="#tab4_4" data-toggle="tab">修改排课计划</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab4_1">
+                        <table class="table">
+                            <tr>
+                                <th>排课编号</th>
+                                <th>课程</th>
+                                <th>上课时间</th>
+                                <th>教师</th>
+                                <th>最大人数</th>
+                                <th>开课学期</th>
+                                <th>可选班级</th>
+                            </tr>
+                            {% for coup in courseplan %}
+                                <tr>
+                                    <th>{{ coup['id'] }}</th>
+                                    <th>{{ Cour.query.filter_by(id=coup['courseid']).first().name }}</th>
+                                    <th>{{ coup['seq'] }}</th>
+                                    <th>{{ Tea.query.filter_by(id=coup['teacherid']).first().name }}</th>
+                                    <th>{{ coup['num'] }}</th>
+                                    <th>{{ coup['semester'] }}</th>
+                                    <th>{{ Cla.query.filter_by(id=coup['classid']).first().name }}</th>
+                                </tr>
+                            {% endfor %}
+                        </table >
+                    </div>
+                    <div class="tab-pane" id="tab4_2">
+                        {{ wtf.quick_form(form4) }}
+                    </div>
+                    <div class="tab-pane" id="tab4_3">
+                        <table class="table">
+                            <tr>
+                                <th>排课编号</th>
+                                <th>课程</th>
+                                <th>上课时间</th>
+                                <th>教师</th>
+                                <th>最大人数</th>
+                                <th>开课学期</th>
+                                <th>可选班级</th>
+                                <th>操作</th>
+                            </tr>
+                            {% for coup in courseplan %}
+                                <tr>
+                                    <th>{{ coup['id'] }}</th>
+                                    <th>{{ Cour.query.filter_by(id=coup['courseid']).first().name }}</th>
+                                    <th>{{ coup['seq'] }}</th>
+                                    <th>{{ Tea.query.filter_by(id=coup['teacherid']).first().name }}</th>
+                                    <th>{{ coup['num'] }}</th>
+                                    <th>{{ coup['semester'] }}</th>
+                                    <th>{{ Cla.query.filter_by(id=coup['classid']).first().name }}</th>
+                                    <th><a href="{{ url_for('eduadmin.deletecoup',id1=coup['id'],id2=coup['classid'],myid=myself.id) }}">删除</a></th>
+                                </tr>
+                            {% endfor %}
+                        </table >
+                    </div>
+                    <div class="tab-pane" id="tab4_4">
+                        <table class="table">
+                            <tr>
+                                <th>排课编号</th>
+                                <th>课程</th>
+                                <th>上课时间</th>
+                                <th>教师</th>
+                                <th>最大人数</th>
+                                <th>开课学期</th>
+                                <th>可选班级</th>
+                                <th>操作</th>
+                            </tr>
+                            {% for coup in courseplan %}
+                                <tr>
+                                    <form action="{{ url_for('eduadmin.modifycoup',id=coup['classid'],myid=myself.id) }}" method="post">
+                                        <th><label>
+                                            <input type="text" style="width: 100%" value="{{ coup['id'] }}" readonly name="fid">
+                                        </label></th>
+                                        <th><label>
+                                            <select name="fs1">
+                                                 {% for cou in course %}
+                                                     <option value="{{ cou['id'] }}">{{ cou['name'] }}</option>
+                                                 {% endfor%}
+                                            </select>
+                                        </label></th>
+                                        <th><label>
+                                            <input type="text" style="width: 100%" value="{{ coup['seq'] }}" name="fseq">
+                                        </label></th>
+                                        <th><label>
+                                            <select name="fs2">
+                                                 {% for t in teacher %}
+                                                     <option value="{{ t['id'] }}">{{ t['name'] }}</option>
+                                                 {% endfor%}
+                                            </select>
+                                        </label></th>
+                                        <th><label>
+                                            <input type="text" style="width: 100%;" value="{{ coup['num'] }}" name="fnum">
+                                        </label></th>
+                                        <th><label>
+                                            <select name="fsem">
+                                                <option value="2020-2021春季学期">2020-2021春季学期</option>
+                                                <option value="2020-2021秋季学期">2020-2021秋季学期</option>
+                                                <option value="2021-2022春季学期">2021-2022春季学期</option>
+                                                <option value="2021-2022秋季学期">2021-2022秋季学期</option>
+                                            </select>
+                                        </label></th>
+                                        <th><label>
+                                            <select name="fs3">
+                                                 {% for c in classs %}
+                                                     <option value="{{ c['id'] }}">{{ c['name'] }}</option>
+                                                 {% endfor%}
+                                            </select>
+                                        </label></th>
+                                        <th><input type="submit"></th>
+                                    </form>
+                                </tr>
+                            {% endfor %}
+                        </table >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

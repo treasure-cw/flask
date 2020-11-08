@@ -1,0 +1,48 @@
+<nav class="navbar navbar-default navbar-static-top" style="margin-bottom: 0;height: 7%;border: 0">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button aria-controls="navbar"
+                    aria-expanded="false"
+                    class="navbar-toggle collapse"
+                    data-target="#7bc75dbef69e41ff2452de70079c8ece1320ea7c"
+                    data-toggle="collapse" type="button">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            {% if current_user.is_authenticated %}
+                {% if current_user.id|length==8 %}
+                    <span class="navbar-brand">系统管理员</span>
+                {% endif %}
+                {% if current_user.id|length==9 %}
+                    <span class="navbar-brand">教务管理员</span>
+                {% endif %}
+                {% if current_user.id|length==10 %}
+                    <span class="navbar-brand">教师</span>
+                {% endif %}
+                {% if current_user.id|length==12 %}
+                    <span class="navbar-brand">学生</span>
+                {% endif %}
+            {% else %}
+                <span class="navbar-brand">教务系统</span>
+            {% endif %}
+        </div>
+        <div class="navbar-collapse collapse"
+             id="#7bc75dbef69e41ff2452de70079c8ece1320ea7c">
+            <ul class="nav navbar-nav">
+                <li {% if url_for('systemadmin.about') is current_link %}class="active"{% endif %}>
+                    <a href="{{ url_for('systemadmin.about') }}" title="关于">修改密码</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                {% if current_user.is_authenticated %}
+                    <li><a href="#">{{ current_user.name }}</a></li>
+                    <li><a href="{{ url_for('auth.logout') }}">登出</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('auth.login') }}">登录</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
