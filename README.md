@@ -29,19 +29,19 @@ OS：ubuntu0.16.04.1<br>
 │&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── forms.py //表单文件<br>
 │&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;└── views.py //路由文件<br>
 │&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── sysadmin //系统管理员模块<br>
-│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── \__init__.py //初始化文件<br>
+│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── __init__.py //初始化文件<br>
 │&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── forms.py //表单文件<br>
 │&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;└── views.py //路由文件<br>
 │&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── eduadmin //教务管理员模块<br>
-│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── \__init__.py //初始化文件<br>
+│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── __init__.py //初始化文件<br>
 │&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── forms.py //表单文件<br>
 │&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;└── views.py //路由文件<br>
 │&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── student //学生模块<br>
-│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── \__init__.py //初始化文件<br>
+│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── __init__.py //初始化文件<br>
 │&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── forms.py //表单文件<br>
 │&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;└── views.py //路由文件<br>
 │&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── teacher //教师模块<br>
-│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── \__init__.py //初始化文件<br>
+│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── __init__.py //初始化文件<br>
 │&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── forms.py //表单文件<br>
 │&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;└── views.py //路由文件<br>
 │&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── static //静态文件<br>
@@ -64,7 +64,7 @@ OS：ubuntu0.16.04.1<br>
 │&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── student.html //学生模板<br>
 │&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── sysadmin.html //系统管理员模板<br>
 │&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;└── teacher.html //教师模板<br>
-│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── \_\_init\__.py //初始化文件<br>
+│&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;├── __init__.py //初始化文件<br>
 │&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;└── models.py //SQLAlchemy模型<br>
 ├── manager.py //程序入口<br>
 └── README.md //MarkDown文件
